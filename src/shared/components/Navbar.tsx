@@ -38,9 +38,9 @@ export default function Navbar() {
         <div className="flex items-center gap-10">
           <Link
             href="/"
-            className="font-display text-2xl md:text-3xl font-black tracking-tighter text-black cursor-pointer select-none"
+            className="font-display text-2xl md:text-3xl font-bold tracking-tighter text-black cursor-pointer select-none"
           >
-            WeduPay
+            Wedu<span className="text-brand-gold font-light">Pay</span>
           </Link>
 
           {/* Navigation for Landing */}
