@@ -1,5 +1,7 @@
 export interface Transaction {
   id: string;
+  studentId?: string;
+  studentName?: string;
   date: string;
   description: string;
   amount: number;
@@ -20,3 +22,5 @@ export interface StudentProfile {
   node: string;
   avatarUrl: string;
 }
+
+export type UserRole = 'student' | 'merchant' | 'none';

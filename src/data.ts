@@ -13,6 +13,8 @@ export const INITIAL_STUDENT_PROFILE: StudentProfile = {
 export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'TXN-908A',
+    studentId: '29-4822-1',
+    studentName: 'Tinashe Moyo',
     date: 'Oct 12, 2024',
     description: 'BYU-Pathway Tuition - Fall Term',
     amount: 125.00,
@@ -23,6 +25,8 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   },
   {
     id: 'TXN-712F',
+    studentId: '29-4822-1',
+    studentName: 'Tinashe Moyo',
     date: 'Oct 05, 2024',
     description: 'Late Registration Fee',
     amount: 20.00,
@@ -33,6 +37,8 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   },
   {
     id: 'TXN-411C',
+    studentId: '29-4822-1',
+    studentName: 'Tinashe Moyo',
     date: 'Sep 28, 2024',
     description: 'Installment Payment #1',
     amount: 200.00,
@@ -40,6 +46,18 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
     paymentMethod: 'Bank Transfer',
     hash: '0x91a2d5f7b4c3e8a1d5c2',
     batchId: 'ZW-2024-07'
+  },
+  {
+    id: 'TXN-154A',
+    studentId: '29-9118-2',
+    studentName: 'Chipo Sibanda',
+    date: 'Jul 15, 2024',
+    description: 'Tuition Advance Deposit',
+    amount: 150.00,
+    status: 'Pending Clearance',
+    paymentMethod: 'EcoCash',
+    hash: '0x73a2e5d7f4c3e8a1d5c4',
+    batchId: 'ZW-2024-06'
   }
 ];
 

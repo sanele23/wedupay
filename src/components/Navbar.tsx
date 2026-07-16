@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Menu, X, Landmark, CreditCard, LogOut } from 'lucide-react';
 
 interface NavbarProps {
-  currentPage: 'landing' | 'dashboard' | 'success';
-  onNavigate: (page: 'landing' | 'dashboard' | 'success') => void;
+  currentPage: 'landing' | 'auth' | 'dashboard' | 'merchant' | 'success';
+  onNavigate: (page: 'landing' | 'auth' | 'dashboard' | 'merchant' | 'success') => void;
+  onLogout?: () => void;
 }
 
-export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
+export default function Navbar({ currentPage, onNavigate, onLogout }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -39,60 +40,75 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </div>
           )}
 
-          {/* Navigation for Dashboard */}
+          {/* Navigation for Student Dashboard */}
           {currentPage === 'dashboard' && (
             <div className="hidden md:flex gap-8 items-center h-20">
               <button 
                 onClick={() => onNavigate('dashboard')}
                 className="text-black font-bold border-b-2 border-black h-20 px-2 font-display text-xs uppercase tracking-widest"
               >
-                Dashboard
+                Student Hub
               </button>
               <a 
                 href="#transactions"
                 className="text-gray-500 font-bold text-xs uppercase tracking-widest hover:text-brand-gold transition-colors duration-200"
               >
-                Transactions
+                Ledger History
               </a>
-              <a 
-                href="#rates-panel"
-                className="text-gray-500 font-bold text-xs uppercase tracking-widest hover:text-brand-gold transition-colors duration-200"
+            </div>
+          )}
+
+          {/* Navigation for Merchant Workspace */}
+          {currentPage === 'merchant' && (
+            <div className="hidden md:flex gap-8 items-center h-20">
+              <button 
+                onClick={() => onNavigate('merchant')}
+                className="text-black font-bold border-b-2 border-black h-20 px-2 font-display text-xs uppercase tracking-widest"
               >
-                Pathway Rates
-              </a>
+                Admin Panel
+              </button>
+              <span className="px-3 py-1 bg-yellow-50 text-yellow-800 border border-yellow-200 text-[10px] font-mono uppercase font-bold">
+                Harare HQ Node
+              </span>
             </div>
           )}
         </div>
 
         {/* Right Side: CTA / Action Buttons */}
         <div className="hidden md:flex items-center gap-4">
-          {currentPage === 'landing' ? (
+          {currentPage === 'landing' || currentPage === 'auth' ? (
             <>
               <button 
-                onClick={() => onNavigate('dashboard')}
+                onClick={() => onNavigate('auth')}
                 className="px-6 py-2.5 font-sans text-xs font-bold uppercase tracking-widest border border-brand-border hover:border-black transition-all bg-transparent text-black"
               >
-                BYU-Pathway Rates
+                Portal Login
               </button>
               <button 
-                onClick={() => onNavigate('dashboard')}
+                onClick={() => onNavigate('auth')}
                 className="px-6 py-3 bg-black text-white font-sans text-xs font-bold uppercase tracking-widest active:scale-95 hover:bg-brand-gold hover:text-black transition-all"
               >
-                Launch App
+                Launch Workspace
               </button>
             </>
           ) : (
             <>
               <div className="flex items-center gap-2 mr-2 px-3 py-1.5 border border-brand-border bg-gray-50 text-xs font-mono text-gray-500">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                ZW Node Active
+                {currentPage === 'merchant' ? 'Admin Node' : 'Student Node'} Active
               </div>
               <button 
-                onClick={() => onNavigate('landing')}
+                onClick={() => {
+                  if (onLogout) {
+                    onLogout();
+                  } else {
+                    onNavigate('landing');
+                  }
+                }}
                 className="px-6 py-3 bg-black text-white font-sans text-xs font-bold uppercase tracking-widest active:scale-95 hover:bg-brand-gold hover:text-black transition-all flex items-center gap-2"
               >
                 <LogOut size={14} />
-                Exit App
+                Logout
               </button>
             </>
           )}
@@ -112,7 +128,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-brand-border bg-white px-6 py-4 space-y-4">
-          {currentPage === 'landing' ? (
+          {currentPage === 'landing' || currentPage === 'auth' ? (
             <>
               <a 
                 href="#how-it-works"
@@ -132,20 +148,20 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 <button 
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onNavigate('dashboard');
+                    onNavigate('auth');
                   }}
                   className="w-full text-center py-2.5 border border-brand-border font-sans text-xs font-bold uppercase tracking-widest hover:border-black transition-all"
                 >
-                  BYU-Pathway Rates
+                  Portal Login
                 </button>
                 <button 
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onNavigate('dashboard');
+                    onNavigate('auth');
                   }}
                   className="w-full text-center py-3 bg-black text-white font-sans text-xs font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-black transition-all"
                 >
-                  Launch App
+                  Launch Workspace
                 </button>
               </div>
             </>
@@ -154,36 +170,26 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
               <button 
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onNavigate('dashboard');
+                  onNavigate(currentPage);
                 }}
                 className="block text-left w-full text-black font-bold text-xs uppercase tracking-widest"
               >
-                Dashboard
+                {currentPage === 'merchant' ? 'Admin Panel' : 'Student Hub'}
               </button>
-              <a 
-                href="#transactions"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block text-gray-700 font-bold text-xs uppercase tracking-widest hover:text-brand-gold"
-              >
-                Transactions
-              </a>
-              <a 
-                href="#rates-panel"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block text-gray-700 font-bold text-xs uppercase tracking-widest hover:text-brand-gold"
-              >
-                Pathway Rates
-              </a>
               <div className="pt-2">
                 <button 
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onNavigate('landing');
+                    if (onLogout) {
+                      onLogout();
+                    } else {
+                      onNavigate('landing');
+                    }
                   }}
                   className="w-full text-center py-3 bg-black text-white font-sans text-xs font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-black transition-all flex items-center justify-center gap-2"
                 >
                   <LogOut size={14} />
-                  Exit App
+                  Logout
                 </button>
               </div>
             </>
