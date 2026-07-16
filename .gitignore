@@ -1,8 +1,22 @@
+# Dependencies
 node_modules/
+
+# Next.js
+.next/
+out/
 build/
-dist/
+
+# Testing / coverage
 coverage/
+
+# Misc
 .DS_Store
 *.log
+next-env.d.ts
+
+# Env files
 .env*
 !.env.example
+
+# AI
+CLAUDE.md

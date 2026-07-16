@@ -1,6 +1,0 @@
-{
-  "name": "WeduPay",
-  "description": "Seamless tuition payments for BYU-Pathway students in Zimbabwe. Bridge the gap between local currency and global education with precision.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

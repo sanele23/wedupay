@@ -1,20 +1,39 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# WeduPay
 
-# Run and deploy your AI Studio app
+Seamless tuition payments for BYU-Pathway students in Zimbabwe — bridging local currency and
+global education.
 
-This contains everything you need to run your app locally.
+This is a [Next.js](https://nextjs.org) (App Router) application.
 
-View your app in AI Studio: https://ai.studio/apps/908f4e9e-a1be-4620-97b3-081a89e84463
+> **Status:** Phase 1 — UI only. Screens use mock, in-memory data via a Zustand store
+> ([src/shared/store/useSessionStore.ts](src/shared/store/useSessionStore.ts)); there is no backend,
+> database, or real authentication yet. That lands in Phase 2.
 
-## Run Locally
+## Getting Started
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev
+```
 
+Open [http://localhost:3000](http://localhost:3000).
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Project Structure
+
+```
+src/
+  app/                Routes (App Router)
+    (site)/           Shared chrome (Navbar + Footer): landing, auth, dashboard, merchant
+    success/          Standalone dark receipt screen (own chrome)
+  features/           Feature-scoped components, grouped by domain
+  shared/             Cross-feature components, hooks, store, types
+  lib/                Mock data and utilities
+```
+
+## Scripts
+
+- `npm run dev` — start the dev server
+- `npm run build` — production build
+- `npm run start` — run the production build
+- `npm run lint` — ESLint
+- `npm run typecheck` — TypeScript, no emit
